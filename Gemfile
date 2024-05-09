@@ -68,3 +68,18 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "devise", "~> 4.9"
+
+gem "letter_opener_web", "~> 2.0"
+
+gem "tailwindcss-rails", "~> 2.3"
+
+gem "importmap-rails", "~> 2.0"
+
+gem "faker", "~> 3.2"
+
+gem 'font-awesome-sass'
+
+gem 'friendly_id', '~> 5.5.0'
+gem "rspec-rails", "~> 6.1"
