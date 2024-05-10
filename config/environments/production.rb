@@ -93,5 +93,22 @@ Rails.application.configure do
   #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
-  # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # Disable SQLite warning
+  config.active_record.sqlite3_production_warning=false
+
+  # Action Mailer Setup for Production
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:         ENV["SMTP_ADDRESS"],
+    port:            ENV["SMTP_PORT"],
+    user_name:       ENV["SMTP_USERNAME"],
+    password:        ENV["SMTP_PASSWORD"],
+    domain:          ENV["SMTP_DOMAIN"],
+    authentication:  'plain',
+    enable_starttls: true,
+    open_timeout:    60,
+    read_timeout:    60 
+  }
 end
