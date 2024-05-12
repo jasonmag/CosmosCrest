@@ -15,7 +15,7 @@ servers:
       - jasonmag.com
     labels:
       traefik.http.routers.spendwise.rule: Host(`spendwise.jasonmag.com`)
-      traefik.http.routers.spendwise_secure.entrypoints: websecure
+      traefik.http.routers.spendwise_secure.entrypoints: spendwisewebsecure
       traefik.http.routers.spendwise_secure.rule: Host(`spendwise.jasonmag.com`)
       traefik.http.routers.spendwise_secure.tls: true
       traefik.http.routers.spendwise_secure.tls.certresolver: letsencrypt
@@ -47,12 +47,12 @@ traefik:
     volume:
     - "/letsencrypt/acme.json:/letsencrypt/acme.json"
   args:
-    entryPoints.web.address: ":80"
-    entryPoints.websecure.address: ":443"
+    entryPoints.spendwiseweb.address: ":80"
+    entryPoints.spendwisewebsecure.address: ":443"
     certificatesResolvers.letsencrypt.acme.email: "jasonmaglangit@gmail.com"
     certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
     certificatesResolvers.letsencrypt.acme.httpchallenge: true
-    certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
+    certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: spendwiseweb
 
 volumes:
   - "storage:/rails/spendwise/storage"
